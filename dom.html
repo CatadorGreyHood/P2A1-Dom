@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios DOM</title>
+    <style>
+        #styled {
+            margin: 20px 0;
+        }
+        .list {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="header">Título original</h1>
+    <p id="demo">Este es un párrafo.</p>
+    <p id="intro">Introducción</p>
+    <p id="paragraph">Este es otro párrafo.</p>
+    <p class="intro">Primer párrafo con clase intro</p>
+    <p class="intro">Segundo párrafo con clase intro</p>
+    <p id="styled">Este párrafo cambiará de estilo.</p>
+
+    <div id="main">
+        <p>Parrafo dentro de main 1</p>
+        <p>Parrafo dentro de main 2</p>
+    </div>
+
+    <ul>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+        <li>Elemento 4</li>
+        <li>Elemento 5</li>
+    </ul>
+
+    <form id="frm1">
+        <input type="text" name="nombre" value="Juan">
+        <input type="text" name="apellido" value="Pérez">
+    </form>
+
+    <img id="myImage" src="old_image.jpg" alt="Imagen antigua">
+
+    <button id="myButton">Haz click aquí</button>
+
+    <form onsubmit="return validateForm()">
+        <input type="text" id="name" placeholder="Nombre">
+        <input type="submit" value="Enviar">
+    </form>
+
+    <input type="text" id="numero" placeholder="Número">
+    <button type="button" onclick="validateNumber()">Validar</button>
+    <p id="demo"></p>
+
+    <script>
+        // Ejercicio 1a
+        document.getElementById("demo").innerHTML = "El contenido ha sido cambiado.";
+
+        // Ejercicio 1b
+        var elementIntro = document.getElementById("intro");
+        console.log(elementIntro);
+
+        // Ejercicio 1c
+        var elementParagraph = document.getElementById("paragraph");
+        elementParagraph.innerHTML = "El contenido de este párrafo ha sido cambiado.";
+
+        // Ejercicio 1d
+        var header = document.getElementById("header");
+        header.innerHTML = "Título cambiado";
+
+        // Ejercicio 2a
+        var paragraphs = document.getElementsByTagName("p");
+        console.log(paragraphs);
+
+        // Ejercicio 2b
+        var main = document.getElementById("main");
+        var paragraphsInMain = main.getElementsByTagName("p");
+        console.log(paragraphsInMain);
+
+        // Ejercicio 3a
+        var introElements = document.getElementsByClassName("intro");
+        console.log(introElements);
+
+        // Ejercicio 4a
+        var introSelector = document.querySelectorAll("p.intro");
+        console.log(introSelector);
+
+        // Ejercicio 4b
+        var ulItems = document.querySelectorAll("ul > li");
+        console.log(ulItems);
+
+        // Ejercicio 4c
+        var h1Element = document.querySelector("h1");
+        console.log(h1Element);
+
+        // Ejercicio 4d
+        var listElement = document.querySelector(".list");
+        console.log(listElement);
+
+        // Ejercicio 4e
+        ulItems.forEach(function(item) {
+            console.log(item);
+        });
+
+        // Ejercicio 4f
+        var styledElement = document.getElementById("styled");
+        styledElement.style.color = "blue";
+        styledElement.style.fontSize = "20px";
+
+        // Ejercicio 5a
+        var form = document.forms["frm1"];
+        for (var i = 0; i < form.length; i++) {
+            console.log(form.elements[i].value);
+        }
+
+        // Ejercicio 6a
+        var newElement = document.createElement("p");
+        newElement.textContent = "Este es un nuevo párrafo.";
+        document.body.appendChild(newElement);
+
+        // Ejercicio 7a
+        document.getElementById("myButton").addEventListener("click", function() {
+            alert("Botón clickeado!");
+        });
+
+        // Ejercicio 8a
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            if (name == "") {
+                alert("El campo nombre no puede estar vacío.");
+                return false;
+            }
+            return true;
+        }
+
+        // Ejercicio 8b
+        function validateNumber() {
+            var num = document.getElementById("numero").value;
+            if (isNaN(num) || num < 1 || num > 10) {
+                document.getElementById("demo").innerHTML = "Número inválido";
+            } else {
+                document.getElementById("demo").innerHTML = "Número válido";
+            }
+        }
+
+        // Ejercicio 9a
+        document.getElementById("myImage").src = "new_image.jpg";
+
+        // Ejercicio 10a
+        document.getElementById("demo").innerHTML = new Date().toLocaleTimeString();
+    </script>
+</body>
+</html>
